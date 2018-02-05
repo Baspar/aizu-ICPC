@@ -1,6 +1,18 @@
 #!/bin/bash
+[ $# -ne 1 ] && {
+    echo "test.sh requires only 1 parameter (directory of the problem)"
+    exit 1
+}
 OLD_PATH=`pwd`
-TEST_PATH=`echo "$0" | sed "s/\/test.sh//g"`
+TEST_PATH="$1"
+[ -d "$TEST_PATH" ] || {
+    echo "$TEST_PATH is not a directory"
+    exit 2
+}
+[ -f "$TEST_PATH/main.cpp" ] || {
+    echo "$TEST_PATH does not contains any main.cpp"
+    exit 3
+}
 cd "$TEST_PATH"
 g++ main.cpp && {
     echo "Compilation OK"
