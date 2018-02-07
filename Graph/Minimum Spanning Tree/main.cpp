@@ -7,21 +7,20 @@
 
 using namespace std;
 
-typedef unsigned us;
-typedef pair<us, us> point;
+typedef pair<unsigned, unsigned> point;
 
 int main () {
-    us V, E;
+    unsigned V, E;
     cin >> V >> E;
 
-    set<us> seen;
+    set<unsigned> seen;
     seen.insert(0);
-    map<us, vector<point> > graph;
-    priority_queue<point, vector<point>, greater<point> > q;
-    us distance = 0;
+    map<unsigned, vector<point> > graph;
+    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > q;
+    unsigned distance = 0;
 
     FOR(_, E) {
-        us s, t, d;
+        unsigned s, t, d;
         cin >> s >> t >> d;
         graph[s].push_back(make_pair(d, t));
         graph[t].push_back(make_pair(d, s));
@@ -31,8 +30,8 @@ int main () {
 
     while (!q.empty() && seen.size() != V) {
         point p = q.top();
-        us v = p.second;
-        us w = p.first;
+        unsigned v = p.second;
+        unsigned w = p.first;
         q.pop();
 
         if (seen.find(v) == seen.end()) {
