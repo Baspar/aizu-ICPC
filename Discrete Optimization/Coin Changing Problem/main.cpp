@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <set>
+#include <cmath>
 
 #define FOR(i,n) for(int i=0; i<n; i++)
 #define FORI(i,z,n) for(int i=z; i<n; i++)
@@ -29,7 +30,7 @@ int main () {
         } else {
             // We need to combine previous value e.g: (n-1, 1), (n-2, 2), ...
             int minVal = 0;
-            FOR(j, i)
+            FOR(j, ceil(i/2) + 1)
                 if (minVal == 0 || dyn[j] + dyn[i-j-1] < minVal)
                     minVal = dyn[j] + dyn[i-j-1];
             dyn[i] = minVal;
