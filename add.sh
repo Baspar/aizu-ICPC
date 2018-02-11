@@ -17,6 +17,7 @@ TITLE=""
 COUNTER=0
 AFTER_H2="FALSE"
 INPUT="TRUE"
+IGNORE_FIRST="TRUE"
 while read_dom
 do
     if [ "$ENTITY" = "title" ]
@@ -30,7 +31,12 @@ do
         fi
     elif [ "$ENTITY" = "H2" ]
     then
-        AFTER_H2="TRUE"
+        if [ "$IGNORE_FIRST" = "TRUE" ]
+        then
+            IGNORE_FIRST="FALSE"
+        else
+            AFTER_H2="TRUE"
+        fi
     elif [ "$AFTER_H2" = "TRUE" ] && [ "$ENTITY" = "pre" ]
     then
         if [ "$INPUT" = "TRUE" ]
