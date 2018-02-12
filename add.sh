@@ -56,6 +56,7 @@ done < tmp.xml
 
 mkdir "$TITLE"
 mv *.result *.data "$TITLE"
+echo -e "#include <iostream>\n#include <vector>\n\nusing namespace std;\n\nint main () {\n}" > "$TITLE/main.cpp"
 
 rm tmp.xml
 # TITLE=`echo "$DATA" | grep "<title>" | sed "s/<title>\(.*\) | Aizu Online Judge<\/title>/\1/g"`
